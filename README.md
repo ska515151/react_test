@@ -1,70 +1,137 @@
-# Getting Started with Create React App
+## 세팅
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+```
+npm -g install create-react-app
+npx create-react-app <project name>
+```
 
-## Available Scripts
+## memo
 
-In the project directory, you can run:
+### 01강 리액트 설치와 셋팅법
+https://www.youtube.com/watch?v=nahwuaXmgt8
 
-### `npm start`
+- 데이터 바인딩
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+```
+import logo from './logo.svg';
+import './App.css';
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+function App() {
 
-### `npm test`
+  let dataBindinTest = '데이터 바인딩 테스트'
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+  return (
+    <div className="App">
+      <div className="black-nav">
+        <div>
+          개발 blog
+        </div>
+      </div>
+        <h4> { dataBindinTest } </h4>
+    </div>
+  );
+}
 
-### `npm run build`
+export default App;
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### React 기초 3강 : 리액트에선 변수말고 state 만들어 쓰랬죠 (useState)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```
+import React, { useState } from 'react';
+import logo from './logo.svg';
+import './App.css';
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+function App() {
 
-### `npm run eject`
+  let [a, b] = useState('남자 코트 추천')
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+  return (
+    <div className="App">
+      <div className="black-nav">
+        <div>개발 Blog</div>
+      </div>
+      <div className='list'>
+        <h3>{ a }</h3>
+        <p>2월 17일 발행</p>
+        <hr/>
+      </div>
+    </div>
+  );
+}
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+export default App;
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### React 기초 4강 : 리액트에서 버튼에 이벤트 리스너 (핸들러) 장착하는 법
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```
+import React, { useState } from 'react';
+import logo from './logo.svg';
+import './App.css';
 
-## Learn More
+function App() {
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+  let [a, b] = useState('남자 코트 추천')
+  let [a2, b2] = useState(0)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+  return (
+    <div className="App">
+      <div className="black-nav">
+        <div>개발 Blog</div>
+      </div>
+      <button onClick={ () => { b('여자 코트 추천') } }>title 변경</button>
+      <div className='list'>
+        <h3>{ a } <span onClick={() => { b2(a2+1) }}>🙂</span> { a2 } </h3>
+        <p>2월 17일 발행</p>
+        <hr/>
+      </div>
+    </div>
+  );
+}
 
-### Code Splitting
+export default App;
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### React 기초 6강 : Component로 HTML 깔끔하게 줄이는 법
 
-### Analyzing the Bundle Size
+```
+import React, { useState } from 'react';
+import logo from './logo.svg';
+import './App.css';
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+function App() {
 
-### Making a Progressive Web App
+  let [a, b] = useState('남자 코트 추천')
+  let [a2, b2] = useState(0)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+  return (
+    <div className="App">
+      <div className="black-nav">
+        <div>개발 Blog</div>
+      </div>
+      <button onClick={ () => { b('여자 코트 추천') } }>title 변경</button>
+      <div className='list'>
+        <h3>{ a } <span onClick={() => { b2(a2+1) }}>🙂</span> { a2 } </h3>
+        <p>2월 17일 발행</p>
+        <hr/>
+      </div>
 
-### Advanced Configuration
+      <Modal title={ a } date={ '2월 17일 발행' } content={ '123' }  />
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+    </div>
+  );
+}
 
-### Deployment
+const Modal = ({ title, date, content }) => {
+  return (
+    <div className='modal'>
+        <h2>{ title }</h2>
+        <p>{ date }</p>
+        <p>{ content }</p>
+      </div>
+  )
+}
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+export default App;
+```
